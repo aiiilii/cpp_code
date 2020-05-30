@@ -13,8 +13,9 @@ int length_of_longest_substring(string s) {
 
     int i = 0;
     for (int j = 0; j < s.size(); j++) {
-        if (um.find(s[j]) != um.end()) {
-            i = max(i, um[s[j]] + 1);
+        auto it = um.find(s[j]);
+        if (it != um.end()) {
+            i = max(i, it->second + 1);
         }
 
         maxCount = max(maxCount, j - i + 1);
