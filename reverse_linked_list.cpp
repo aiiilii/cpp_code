@@ -32,3 +32,15 @@ ListNode* reverseList(ListNode* head) {
 }
 
 
+// Recursive solution
+ListNode* reverseList1(ListNode* head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
+    ListNode* new_head = reverseList1(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+
+    return new_head;
+}
