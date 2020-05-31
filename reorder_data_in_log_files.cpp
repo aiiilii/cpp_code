@@ -22,7 +22,7 @@ vector<string> reorderLogFiles(vector<string>& logs) {
         }
     }
 
-    sort(letterLogs.begin(), letterLogs.end(), [&](auto& a, auto& b) {
+    sort(letterLogs.begin(), letterLogs.end(), [](auto& a, auto& b) -> bool { // lambda function
         if (a.second == b.second) {
             return a.first < b.first; // ascending (lexicographically) order of first
         } else {
