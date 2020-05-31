@@ -1,5 +1,7 @@
 #include <vector>
 #include <unordered_map>
+#include <list>
+
 using namespace std;
 
 vector<int> twoSum(vector<int>& nums, int target) {
@@ -26,6 +28,33 @@ vector<int> twoSum(vector<int>& nums, int target) {
     return res;
 }
 
+class A {
+private:
+    int* m;
+
+public:
+    A() {
+        m = new int();
+        *m = 2;
+    }
+
+    ~A() {
+        delete m;
+    }
+};
+
 int main() {
+    list<pair<int, int>> a;
+    list<pair<int, int>>::iterator f = a.begin();
+    (++f);
+
+
+    A a;
+
+
+    A* b = new A();
+    delete b;
+
+    
     return 0;
 }
