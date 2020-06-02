@@ -9,7 +9,7 @@ bool can_attend_meetings(vector<vector<int>>& intervals) {
     }
 
     sort(intervals.begin(), intervals.end(), [](const auto& a, const auto& b) -> bool {
-        return a[0] < b[0];
+        return a[0] < b[0]; // ascending;
     });
 
     for (int i = 1; i < intervals.size(); i++) {
