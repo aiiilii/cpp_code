@@ -1,7 +1,9 @@
 #include <vector>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
+// Binary search approach
 int search(vector<int>& nums, int target) {
     if (nums.size() == 0) {
         return -1;
@@ -31,4 +33,15 @@ int search(vector<int>& nums, int target) {
         }
     }
     return -1;
+}
+
+
+// Using c++ built in function
+int search1(vector<int>& nums, int target) {
+    auto it = find(nums.begin(), nums.end(), target);
+    if (it != nums.end()) { // found
+        return distance(nums.begin(), it);
+    } else {
+        return -1;
+    }
 }
