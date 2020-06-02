@@ -29,7 +29,7 @@ Node* copy_random_list(Node* head) {
     while (head != nullptr) {
         auto it = um.find(head);
         if (it != um.end()) {
-            newNode = um[head];
+            newNode = it->second; // same as um[head], but better efficiency;
         } else {
             newNode = new Node(head->val);
             um[head] = newNode;
@@ -38,7 +38,7 @@ Node* copy_random_list(Node* head) {
         if (head->random != nullptr) {
             auto f = um.find(head->random);
             if (f != um.end()) {
-                newNode->random = um[head->random];
+                newNode->random = f->second; // um[head->random];
             } else {
                 newNode->random = new Node(head->random->val);
                 um[head->random] = newNode->random;
