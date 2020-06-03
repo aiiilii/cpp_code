@@ -12,9 +12,9 @@ vector<vector<string>> group_anagrams(vector<string>& strs) {
         string sortedstr = str;
         sort(sortedstr.begin(), sortedstr.end());
 
-        vector<string> first = um[sortedstr];
-        first.push_back(str);
-        um[sortedstr] = first;
+        // vector<string> first = um[sortedstr]; not needed
+        um[sortedstr].push_back(str); // can directly operate
+        // um[sortedstr] = first; 
     }
 
     vector<vector<string>> res;
