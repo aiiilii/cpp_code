@@ -12,13 +12,13 @@ struct TreeNode {
 
 string serialize(TreeNode* root) {
     if (root == nullptr) {
-        return "";
+        return "null";
     }
     return to_string(root->val) + "," + serialize(root->left) + "," + serialize(root->right);
 }
 
 TreeNode* deserialize(string data) {
-    if (data == "") {
+    if (data == "null") {
         return nullptr;
     }
     stringstream s(data);
@@ -28,7 +28,7 @@ TreeNode* deserialize(string data) {
 TreeNode* deserialize_helper(stringstream& s) {
     string str;
     getline(s, str, ',');
-    if (str == "") {
+    if (str == "null") {
         return nullptr;
     } else {
         TreeNode* node = new TreeNode(stoi(str));
