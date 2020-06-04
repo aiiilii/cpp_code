@@ -3,10 +3,7 @@
 using namespace std;
 
 vector<vector<int>> generate_matrix(int n) {
-    vector<vector<int>> matrix(n);
-    for (int i = 0; i < n; i++) {
-        matrix[i].resize(n);
-    }
+    vector<vector<int>> matrix(n, vector<int>(n)); // initialization
 
     if (n == 0) {
         return matrix;

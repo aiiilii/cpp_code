@@ -8,7 +8,7 @@ void game_of_life(vector<vector<int>>& board) {
     int rows = board.size();
     int cols = board[0].size();
 
-    vector<vector<int>> copyboard(rows);
+    vector<vector<int>> copyboard(rows); // or vector<vector<int>> copyboard(rows, vector<int>(cols)) to initialize;
     for (int i = 0; i < rows; i++) { // initialize copyboard to be the same size as board;
         copyboard[i].resize(cols);
     }
