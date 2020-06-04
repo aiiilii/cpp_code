@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Hashmap approach
+// Hashmap approach - saving the presum into map
 int subarray_sum1(vector<int>& nums, int k) {
     int count = 0;
     int sum = 0;
