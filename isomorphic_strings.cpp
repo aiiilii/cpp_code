@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// Two strings are isomorphic if the positions of the characters follow the same pattern;
+//
+// String s:              A B E A C D B
+// index pattern:         0 1 2 0 4 5 1
+// String t:              X Y I X H K Y
+// index pattern:         0 1 2 0 4 5 1
 bool is_isomorphic(string s, string t) {
     if (s.size() != t.size()) {
         return false;

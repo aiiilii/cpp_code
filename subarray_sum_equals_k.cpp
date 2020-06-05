@@ -18,7 +18,7 @@ int subarray_sum1(vector<int>& nums, int k) {
     for (int i = 0; i < nums.size(); i++) {
         sum += nums[i];
         
-        auto it = um.find(sum - k);
+        auto it = um.find(sum - k); // if sum - k is in um, then it means (sum - some previous sum) == k;
         if (it != um.end()) {
             count += it->second;
         }
