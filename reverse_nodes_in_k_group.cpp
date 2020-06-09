@@ -24,7 +24,7 @@ public:
             i++;
             if (i % k == 0) { // in this case, i == k
                 begin = reverse(begin, head->next);
-                head = begin->next;
+                head = begin->next; // jump to the next section
             } else {
                 head = head->next;
             }
@@ -45,9 +45,9 @@ private:
             prev = curr;
             curr = curr_next;
         }
-        begin->next = prev;
+        begin->next = prev; // prev is the new head after reversing;
         first->next = curr;
 
-        return first;
+        return first; // first is the last node after reversing, returning it will be the new prev;
     }
 };
