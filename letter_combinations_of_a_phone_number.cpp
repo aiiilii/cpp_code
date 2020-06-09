@@ -38,7 +38,7 @@ private:
             return;
         }
 
-        for (char c : mappings[digits[temp.size()] - '0']) {
+        for (char c : mappings[digits[temp.size()] - '0']) { // temp.size() increases as backtracking increases, thus do not need an index variable to track;
             temp.push_back(c);
             backtracking(res, mappings, temp, digits);
             temp.pop_back();
