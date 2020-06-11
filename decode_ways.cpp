@@ -13,11 +13,11 @@ int num_decodings(string s) {
     int cur_ways = 1;
     int pre_ways = 1;
 
-    for (int i = 1; i < s.size(); i++) {
+    for (int i = 1; i < s.size(); i++) { // starting at 1;
         int temp = cur_ways;
         if (s[i] == '0') {
             cur_ways = pre_ways;
-            if (s[i - 1] >= '3' || s[i - 1] <= '0') {
+            if (s[i - 1] >= '3' || s[i - 1] <= '0') { // thus check i - 1;
                 return 0;
             }
         } else {
