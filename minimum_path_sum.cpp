@@ -17,7 +17,7 @@ int min_path_sum(vector<vector<int>>& grid) {
         sums[i][0] = sums[i - 1][0] + grid[i][0];
     }
 
-    for (int j = 1; j < cols; j++) {
+    for (int j = 1; j < cols; j++) { // going right on the first row;
         sums[0][j] = sums[0][j - 1] + grid[0][j];
     }
 

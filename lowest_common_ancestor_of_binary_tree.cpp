@@ -48,7 +48,7 @@ public:
             ancestors.emplace(p);
             p = parentMap[p];
         }
-        while (ancestors.find(q) == ancestors.end()) {
+        while (ancestors.find(q) == ancestors.end()) { // does not contain;
             q = parentMap[q];
         }
 
