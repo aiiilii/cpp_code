@@ -3,12 +3,23 @@
 
 using namespace std;
 
+
+/** 
+ * Maintain a min-PriorityQueue with the least frequently used element at the top. 
+ * When frequency changes, then we need to re-heapify. Native STL PriorityQueue does not support this so we write our own.
+ * Index Priority Queue - both a Prioriity Queue and a Hash Map
+ * 
+ * When we evict an element, but multiple elements may have the same (minimum) frequency, then we need to evict the least recently used element.
+ * To handle this, maintain a timestamp variable for each element in the LFU, which indicates the latest timestamp when we access it.
+ * In our PQ, when two elements have the same frequency, the least recently used one will be close to the root.
+*/
+
 struct Node {
 public:
     int key;
     int val;
     int freq;
-    int timestamp;
+    int timestamp; // the latest timestamp when this element is accessed;
     Node() : key(-1), val(-1), freq(0), timestamp(-1) {}
     Node(int key, int val, int timestamp) : key(key), val(val), freq(1), timestamp(timestamp) {}
 };
@@ -18,7 +29,7 @@ public:
     LFUCache(int capacity) {
         maxCapacity = capacity;
         Node* dummy = new Node();
-        pq.push_back(dummy);
+        pq.push_back(dummy); // the pq start from pq[1];
         ts = 0;
     }
 
@@ -63,20 +74,27 @@ public:
     }
 
 private:
-    vector<Node*> pq;
-    unordered_map<int, int> um;
+    vector<Node*> pq; // A PriorityQueue, with the least usage frequency and least recently used element at the top;
+    unordered_map<int, int> um; // A mapping from the key of the element to its index in the PriorityQueue
     int maxCapacity;
-    int ts;
+    int ts; // timestamp: indicate the timestamp of the latest operation of an element. 
 
+    /** 
+     * Recursively sink a node in priority queue. A node will be sinked when its frequency is larger than any of its children nodes, 
+     * or the node has the same frequency with a child, but it is recently updated.
+    */
     void sink(int index) {
         int left = 2 * index;
         int right = 2 * index + 1;
         int target = index;
 
+        // If the left child has the same frequency, we probably need to swap the parent node and the child node, 
+        // because the parent node is recently accessed, and the left child node was accessed at an older time stamp.
         if (left < pq.size() && pq[left]->freq <= pq[target]->freq) {
             target = left;
         }
 
+        // If right child has the same frequency and an older timestamp, we must swap it.
         if (right < pq.size()) {
             if (pq[right]->freq < pq[target]->freq || (pq[right]->freq == pq[target]->freq && pq[right]->timestamp < pq[target]->timestamp)) {
                 target = right;
@@ -89,6 +107,10 @@ private:
         }
     }
 
+    /** 
+     * Recursively swim a node in priority queue. A node will be swimmed, when its frequency is less than its parent node.
+     * If the node has the same frequency with its parent, it is not needed to be swimmed, because it is recently accessed.
+    */
     void swim(int index) {
         int par = index / 2;
         while (par > 0 && pq[par]->freq > pq[index]->freq) {
